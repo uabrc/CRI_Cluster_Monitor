@@ -12,6 +12,8 @@
   ganglia_grid_name: "ExampleSite"
   ganglia_public_name: "ganglia.localdomain"
 
+  enable_openxdmod: true
+
   xdmod_public_name: "open-xdmod.localdomain"
 
   xdmod_version: 8.0.0
