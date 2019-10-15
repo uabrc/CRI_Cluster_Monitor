@@ -4,4 +4,4 @@
    roles:
 
    - {role: ganglia, tags: ganglia, when: enable_ganglia} #temporarily commented while working on openxdmod
-   - {role: openxdmod, tags: openxdmod}
+   - {role: openxdmod, tags: openxdmod, when: enable_openxdmod}
