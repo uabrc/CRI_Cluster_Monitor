@@ -7,6 +7,8 @@
   headnode_public_ip: "192.168.56.5"
   chroot_loc: "/opt/ohpc/admin/images/"
 
+  enable_ganglia: false
+
   ganglia_grid_name: "ExampleSite"
   ganglia_public_name: "ganglia.localdomain"
 
