@@ -16,3 +16,6 @@
     name: mongodb-org
     state: present
 
+- name: Start MongoDB daemon
+  command: systemctl start mongod
+
