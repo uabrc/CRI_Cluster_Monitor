@@ -11,8 +11,8 @@
 
   xdmod_public_name: "open-xdmod.localdomain"
 
-  xdmod_version: 8.0.0
-  xdmod_url: "https://github.com/ubccr/xdmod/releases/download/v8.0.0/xdmod-8.0.0-1.0.el7.noarch.rpm"
+  xdmod_version: 8.1.2
+  xdmod_url: "https://github.com/ubccr/xdmod/releases/download/v8.1.2/xdmod-8.1.2-1.0.el7.noarch.rpm"
 
   slurm_cluster_name: "ohpc" #for OpenXDMoD to parse SLURM accounting
   xdmod_long_cluster_name: "OHPC"
