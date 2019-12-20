@@ -20,14 +20,14 @@
   xdmod_num_nodes: 2
   xdmod_num_procs: 2
 
-  xdmod_orgname: "XSEDE Capabilities and Resource Integration"
-  xdmod_org_abbr: "XCRI"
+  xdmod_orgname: ""
+  xdmod_org_abbr: ""
 
   xdmod_address: "http://localhost:443/"
-  xdmod_contact_email: "jecoulte@iu.edu" #please change this!
-  xdmod_admin_email: "jecoulte@iu.edu"
+  xdmod_contact_email: "" #please change this!
+  xdmod_admin_email: ""
 
   xdmod_logo_path: "" #blank for now
   xdmod_logo_width: "" #blank for now
 
-  xdmod_db_pass: "xdmod+xcri_rocks"
+  xdmod_db_pass: ""
