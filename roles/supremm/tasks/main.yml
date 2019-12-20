@@ -11,3 +11,8 @@
     enabled: yes
     gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
 
+- name: Install MongoDB packages and associated tools
+  yum:
+    name: mongodb-org
+    state: present
+
