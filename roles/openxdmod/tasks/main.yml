@@ -103,12 +103,14 @@
 
  - name: initialize acls
    command: acl-xdmod-management
-
+   when: xdmod_version is version('8.0.0', operator='<=', strict=True)
+ 
  - name: config acls
    command: acl-config
 
  - name: import acls
    command: acl-import
+   when: xdmod_version is version('8.0.0', operator='<=', strict=True)
 
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
