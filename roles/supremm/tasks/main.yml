@@ -19,3 +19,8 @@
 - name: Start MongoDB daemon
   command: systemctl start mongod
 
+- name: Install job performance module supremm
+  yum: 
+    name: "{{ supremm_url }}" 
+    state: present
+
