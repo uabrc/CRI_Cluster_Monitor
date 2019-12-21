@@ -31,3 +31,7 @@
   xdmod_logo_width: "" #blank for now
 
   xdmod_db_pass: ""
+
+# SUPReMM
+
+  supremm_url: https://github.com/ubccr/xdmod-supremm/releases/download/v8.1.0/xdmod-supremm-8.1.0-1.0.el7.noarch.rpm
