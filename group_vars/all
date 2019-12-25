@@ -39,3 +39,5 @@
   supremm_job_summarization_url: https://github.com/ubccr/supremm/releases/download/1.2.0/supremm-1.2.0-1.el7.x86_64.rpm
 
   data_source: "pcp"
+
+  gpfs_mount_point: ""
