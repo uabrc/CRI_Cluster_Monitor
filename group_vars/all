@@ -48,3 +48,5 @@
 
   xdmod_config_dir: "/etc/xdmod"
 
+  pcp_log_dir: ""
+
