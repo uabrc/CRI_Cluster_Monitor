@@ -1,0 +1,13 @@
+{
+    "resources": [
+        {
+            "resource_id": 1,
+            "resource": "{{ slurm_cluster_name }}",
+            "enabled": true,
+            "datasetmap": "{{ data_source }}",
+            "hardware": {
+                "gpfs": "{{ gpfs_mount_point }}"
+            }
+        }
+    ]
+}
