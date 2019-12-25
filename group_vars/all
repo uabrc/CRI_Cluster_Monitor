@@ -41,3 +41,6 @@
   data_source: "pcp"
 
   gpfs_mount_point: ""
+
+  job_summary_db: "supremm"
+
