@@ -52,3 +52,4 @@
 
   job_script_dir: " "
 
+  "archive_out_dir": "/home/centos/supremm_test"
