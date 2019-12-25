@@ -57,3 +57,9 @@
     group: xdmod
     mode: '0440'
 
+- name: job summarization resource settings template
+  template:
+    src: job-summarization-config.json.j2
+    dest: /etc/supremm/config.json
+    mode: 0644
+
