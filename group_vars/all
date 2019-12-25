@@ -50,3 +50,5 @@
 
   pcp_log_dir: ""
 
+  job_script_dir: " "
+
