@@ -38,3 +38,13 @@
     name: "{{ supremm_job_summarization_url }}"
     state: present
 
+### Configuration
+
+# SUPReMM configuration files
+
+- name: supremm resource config template
+  template:
+    src: supremm_resources.json.j2
+    dest: /etc/xdmod/supremm_resources.json
+    mode: '0644'
+
