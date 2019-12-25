@@ -48,3 +48,12 @@
     dest: /etc/xdmod/supremm_resources.json
     mode: '0644'
 
+
+- name: supremm portal settings template
+  template:
+    src: supremm.ini.j2
+    dest: /etc/xdmod/portal_settings.d/supremm.ini
+    owner: apache
+    group: xdmod
+    mode: '0440'
+
