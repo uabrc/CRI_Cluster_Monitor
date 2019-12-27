@@ -34,6 +34,8 @@
 
 # SUPReMM
 
+  enable_supremm: true
+
   supremm_url: https://github.com/ubccr/xdmod-supremm/releases/download/v8.1.0/xdmod-supremm-8.1.0-1.0.el7.noarch.rpm
 
   supremm_job_summarization_url: https://github.com/ubccr/supremm/releases/download/1.2.0/supremm-1.2.0-1.el7.x86_64.rpm
