@@ -9,7 +9,7 @@
 
   enable_openxdmod: true
 
-  xdmod_public_name: "open-xdmod.localdomain"
+  xdmod_public_name: "ohpc.novalocal"
 
   xdmod_version: 8.1.2
   xdmod_url: "https://github.com/ubccr/xdmod/releases/download/v8.1.2/xdmod-8.1.2-1.0.el7.noarch.rpm"
