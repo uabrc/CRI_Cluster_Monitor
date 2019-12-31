@@ -1,0 +1,75 @@
+---
+
+# Installation 
+
+- name: Add MongoDB repo file
+  yum_repository:
+    name: mongodb-org-3.4.repo
+    description: MongoDB YUM repo
+    baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.4/x86_64/
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: https://www.mongodb.org/static/pgp/server-3.4.asc
+
+- name: Install MongoDB packages and associated tools
+  yum:
+    name: mongodb-org
+    state: present
+
+- name: Start MongoDB daemon
+  command: systemctl start mongod
+
+- name: Install job performance module supremm
+  yum: 
+    name: "{{ supremm_url }}" 
+    state: present
+
+- name: Install prerequisite pcp packages for supremm job summarization module
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - https://dl.bintray.com/pcp/el7/pcp-conf-3.12.2-1.x86_64.rpm
+    - https://dl.bintray.com/pcp/el7/pcp-libs-3.12.2-1.x86_64.rpm
+    - https://dl.bintray.com/pcp/el7/python-pcp-3.12.2-1.x86_64.rpm
+
+- name: Install job summarization module
+  yum:
+    name: "{{ supremm_job_summarization_url }}"
+    state: present
+
+### Configuration
+
+# SUPReMM configuration files
+
+- name: supremm resource config template
+  template:
+    src: supremm_resources.json.j2
+    dest: /etc/xdmod/supremm_resources.json
+    mode: '0644'
+
+
+- name: supremm portal settings template
+  template:
+    src: supremm.ini.j2
+    dest: /etc/xdmod/portal_settings.d/supremm.ini
+    owner: apache
+    group: xdmod
+    mode: '0440'
+
+- name: job summarization resource settings template
+  template:
+    src: job-summarization-config.json.j2
+    dest: /etc/supremm/config.json
+    mode: 0644
+
+- name: import supremm database with tables
+  mysql_db:
+    name: "{{ item | basename | regex_replace('.sql','') }}"
+    state: import
+    target: "{{ item }}"
+  loop:
+    - /usr/share/xdmod/db/schema/modw_supremm.sql
+
+- name: setup the mongodb
+  command: mongo {{ mongodb_connection_uri }} /usr/lib64/python2.7/site-packages/supremm/assets/mongo_setup.js

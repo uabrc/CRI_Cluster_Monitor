@@ -1,0 +1,13 @@
+[supremm-general]
+
+; The version number is updated during the upgrade process.
+version = "8.1.0"
+
+; The path of the ETL schema file relative to [share]/etl/js/config/supremm.
+schema_file = "etl.schema.js"
+
+[jobsummarydb]
+
+db_engine = "MongoDB"
+uri = "{{ mongodb_connection_uri }}"
+db = "{{ job_summary_db }}"

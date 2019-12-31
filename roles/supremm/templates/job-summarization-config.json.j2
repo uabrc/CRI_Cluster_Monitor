@@ -1,0 +1,23 @@
+{
+    "xdmodroot": "{{ xdmod_config_dir }}",
+    "datawarehouse": {
+        "include": "xdmod://datawarehouse"
+    },
+    "resources": {
+        "{{ slurm_cluster_name }}": {
+            "resource_id": 1,
+            "batch_system": "XDMoD",
+            "enabled": true,
+            "pcp_log_dir": "{{ pcp_log_dir }}",
+            "hostname_mode": "hostname",
+            "script_dir": "{{ job_script_dir }}"
+        }
+    },
+    "outputdatabase": {
+        "include": "xdmod://jobsummarydb"
+    },
+    "summary": {
+        "archive_out_dir": "{{ archive_out_dir }}",
+        "subdir_out_format": "%r/%j"
+    }
+}
