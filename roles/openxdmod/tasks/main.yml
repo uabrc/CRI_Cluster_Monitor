@@ -112,6 +112,9 @@
    command: acl-import
    when: xdmod_version is version('8.0.0', operator='<=', strict=True)
 
+ - name: Import hierarchy CSV into XDMOD
+   command:  sudo xdmod-import-csv -t hierarchy -i {{ hierarchy_file_path }}
+
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
 
