@@ -115,6 +115,9 @@
  - name: Import hierarchy CSV into XDMOD
    command:  sudo xdmod-import-csv -t hierarchy -i {{ hierarchy_file_path }}
 
+ - name: Provide a mapping from your user groups to the hierarchy items
+   command: sudo xdmod-import-csv -t group-to-hierarchy -i {{ group_to_hierarchy_file_path }}
+
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
 
