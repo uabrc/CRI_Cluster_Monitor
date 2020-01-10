@@ -118,6 +118,9 @@
  - name: Provide a mapping from your user groups to the hierarchy items
    command: xdmod-import-csv -t group-to-hierarchy -i {{ group_to_hierarchy_file_path }}
 
+ - name: Run ingestor to ingest hierarchies into the tables
+   command: xdmod-ingestor --last-modified-start-date 2015-09-01
+
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
 
