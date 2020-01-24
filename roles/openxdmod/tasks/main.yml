@@ -112,6 +112,48 @@
    command: acl-import
    when: xdmod_version is version('8.0.0', operator='<=', strict=True)
 
+ - name: Drop xdmod DBs
+   mysql_db:
+     name: "{{ item  }}"
+     state: absent
+   loop:
+     - mod_shredder
+     - mod_hpcdb
+     - moddb
+     - modw
+     - modw_aggregates
+     - modw_filters
+     - mod_logger
+ 
+ - name: Create xdmod DBs
+   mysql_db:
+     name: "{{ item  }}"
+     state: present
+   loop:
+     - mod_shredder
+     - mod_hpcdb
+     - moddb
+     - modw
+     - modw_aggregates
+     - modw_filters
+     - mod_logger
+ 
+ - name: Grant privileges on the databases
+   mysql_user:
+     name: "xdmod"
+     password: "{{ xdmod_db_pass }}"
+     priv: "mod_hpcdb.*:ALL/mod_logger.*:ALL/mod_shredder.*:ALL/moddb.*:ALL/modw.*:ALL/modw_aggregates.*:ALL/modw_filters.*:ALL"
+     state: present
+
+ - name: Initilize the database since we dropped and recreated
+   mysql_db:
+     name: "{{ item | basename | regex_replace('.sql','') }}"
+     state: import
+     target: "{{ item }}"
+   with_fileglob:
+     - /usr/share/xdmod/db/schema/*
+     - /usr/share/xdmod/db/data/*
+
  - name: Import hierarchy CSV into XDMOD
    command: xdmod-import-csv -t hierarchy -i {{ hierarchy_file_path }}
 
