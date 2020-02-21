@@ -56,8 +56,8 @@
 
   xdmod_config_dir: "/etc/xdmod"
 
-  pcp_log_dir: ""
+  pcp_log_dir: "/home/centos/supremm/pmlogger"
 
-  job_script_dir: " "
+  job_script_dir: "/home/centos/supremm/jobs_dir/*"
 
   "archive_out_dir": "/home/centos/supremm_test"
