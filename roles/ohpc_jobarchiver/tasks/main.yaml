@@ -1,0 +1,20 @@
+- name: Remove existing job archiver app install
+  file:
+    path: : /usr/local/jobarchive
+    state: absent
+
+- name: job archiver directory
+  file:
+    path:: /usr/local/jobarchive
+    state: directory
+
+- git:
+    repo: https://github.com/krishmoodbidri/job_archive.git 
+    dest: 
+    clone: yes
+
+- name: Run job arcive as the slurm user
+  command: g++ job_archive.cpp -o job_archive -std=c++0x -lpthread
+  become: true
+  become_user: slurm
+
