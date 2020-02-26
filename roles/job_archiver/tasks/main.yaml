@@ -3,11 +3,6 @@
     path: /usr/local/jobarchive
     state: absent
 
-- name: job archiver directory
-  file:
-    path: /usr/local/jobarchive
-    state: directory
-
 - git:
     repo: https://github.com/eesaanatluri/job_archive.git
     dest: /opt/job_archive
