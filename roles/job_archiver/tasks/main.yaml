@@ -1,11 +1,11 @@
 - name: Remove existing job archiver app install
   file:
-    path: : /usr/local/jobarchive
+    path: /usr/local/jobarchive
     state: absent
 
 - name: job archiver directory
   file:
-    path:: /usr/local/jobarchive
+    path: /usr/local/jobarchive
     state: directory
 
 - git:
