@@ -9,9 +9,10 @@
     state: directory
 
 - git:
-    repo: https://github.com/krishmoodbidri/job_archive.git 
-    dest: 
+    repo: https://github.com/eesaanatluri/job_archive.git
+    dest: /opt/job_archive
     clone: yes
+    version: feat-uabrc-local-changes
 
 - name: Run job arcive as the slurm user
   command: g++ job_archive.cpp -o job_archive -std=c++0x -lpthread
