@@ -4,5 +4,6 @@
    roles:
 
    - {role: ganglia, tags: ganglia, when: enable_ganglia} #temporarily commented while working on openxdmod
+   - {role: job_archiver, tags: job_archiver, when: enable_job_archiver}
    - {role: openxdmod, tags: openxdmod, when: enable_openxdmod}
    - {role: supremm, tags: supremm, when: enable_supremm}
