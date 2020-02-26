@@ -10,5 +10,5 @@
     version: feat-uabrc-local-changes
 
 - name: Build job_archiver binary
-  command: g++ job_archive.cpp -o job_archive -std=c++0x -lpthread
+  command: g++ job_archive.cpp -o /usr/local/bin/job_archive -std=c++0x -lpthread
 
