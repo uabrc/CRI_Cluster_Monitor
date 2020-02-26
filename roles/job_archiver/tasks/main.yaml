@@ -12,3 +12,15 @@
 - name: Build job_archiver binary
   command: g++ job_archive.cpp -o /usr/local/bin/job_archive -std=c++0x -lpthread
 
+- name: Copy service files to the machine.
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+  with_items:
+    - job_archive.service
+
+- name: Start job_archive.service
+  service:
+    name: job_archive.service
+    state: started
+    enabled: yes
