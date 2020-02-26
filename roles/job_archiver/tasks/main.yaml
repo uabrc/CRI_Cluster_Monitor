@@ -14,8 +14,6 @@
     clone: yes
     version: feat-uabrc-local-changes
 
-- name: Run job arcive as the slurm user
+- name: Build job_archiver binary
   command: g++ job_archive.cpp -o job_archive -std=c++0x -lpthread
-  become: true
-  become_user: slurm
 
