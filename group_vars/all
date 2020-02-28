@@ -33,10 +33,10 @@
   xdmod_db_pass: ""
 
   xdmod_cron_freq: "5"
-  xdmod_shredder_start_time: "date +'%FT%T' -d '{{ xdmod_cron_freq }} minutes ago'"
-  xdmod_shredder_end_time: "date +'%FT%T'"
-  xdmod_ingestor_start_date: "date"
-  xdmod_ingestor_end_date: "date -d 'next day'"
+  xdmod_shredder_start_time: "date +'\\%FT\\%T' -d '{{ xdmod_cron_freq }} minutes ago'"
+  xdmod_shredder_end_time: "date +'\\%FT\\%T'"
+  xdmod_ingestor_start_date: "date +'\\%F'"
+  xdmod_ingestor_end_date: "date -d 'next day' +'\\%F'"
 
 # SUPReMM
 
