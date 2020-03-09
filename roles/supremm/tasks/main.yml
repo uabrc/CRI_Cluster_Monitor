@@ -70,6 +70,7 @@
     target: "{{ item }}"
   loop:
     - /usr/share/xdmod/db/schema/modw_supremm.sql
+    - /usr/lib64/python2.7/site-packages/supremm/assets/modw_supremm.sql
 
 - name: setup the mongodb
   command: mongo {{ mongodb_connection_uri }} /usr/lib64/python2.7/site-packages/supremm/assets/mongo_setup.js
