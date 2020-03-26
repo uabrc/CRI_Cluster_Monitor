@@ -154,6 +154,16 @@
      - /usr/share/xdmod/db/schema/*
      - /usr/share/xdmod/db/data/*
 
+ - name: populate xdmod databases with tables
+   command: /usr/share/xdmod/tools/etl/etl_overseer.php -p {{ item }}
+   loop: 
+     - xdmod.hpcdb-bootstrap
+     - xdmod.jobs-xdw-bootstrap
+     - xdmod.shredder-bootstrap
+     - xdmod.staging-bootstrap
+     - xdmod.xdb-bootstrap
+     #- xdmod.xdw-bootstrap-storage
+
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
 
