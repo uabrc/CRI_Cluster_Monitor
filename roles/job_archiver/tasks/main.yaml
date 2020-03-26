@@ -14,7 +14,7 @@
 
 - name: Create a directory to store the job scripts
   file:
-    path: {{ job_script_dir }}
+    path: "{{ job_script_dir }}"
     state: directory
 
 - name: Copy service files to the machine.
