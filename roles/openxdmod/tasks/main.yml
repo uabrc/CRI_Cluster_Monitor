@@ -164,6 +164,9 @@
      - xdmod.xdb-bootstrap
      #- xdmod.xdw-bootstrap-storage
 
+ - name: config acls
+   command: acl-config
+
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
 
