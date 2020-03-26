@@ -12,6 +12,11 @@
 - name: Build job_archiver binary
   command: g++ /opt/job_archive/job_archive.cpp -o /usr/local/bin/job_archive -std=c++0x -lpthread
 
+- name: Create a directory to store the job scripts
+  file:
+    path: {{ job_script_dir }}
+    state: directory
+
 - name: Copy service files to the machine.
   copy:
     src: "{{ item }}"
