@@ -157,6 +157,7 @@
      minute: 10
      state: present
      job: "xdmod-slurm-helper -r {{ slurm_cluster_name }}"
+   when: enable_supremm == false
 
  - name: create xdmod ingestor cron job
    cron:
@@ -164,6 +165,7 @@
      minute: 30
      state: present
      job: "xdmod-ingestor"
+   when: enable_supremm == false
 
  - name: reload httpd
    service: name=httpd state=restarted enabled=yes
