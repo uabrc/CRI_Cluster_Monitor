@@ -35,6 +35,14 @@
     - https://dl.bintray.com/pcp/el7/pcp-selinux-3.12.2-1.x86_64.rpm
     - https://dl.bintray.com/pcp/el7/pcp-3.12.2-1.x86_64.rpm
 
+- name: Create home dir for pcp to store pcp log archives
+  file:
+    path: "/home/pcp/supremm/pmlogger"
+    state: directory
+    owner: pcp
+    group: pcp
+    mode: 0700
+
 - name: Install job summarization module
   yum:
     name: "{{ supremm_job_summarization_url }}"
