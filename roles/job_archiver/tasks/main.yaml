@@ -17,6 +17,15 @@
     path: "{{ job_script_dir }}"
     state: directory
 
+- name: Create dirs for slurm to store sbatch scripts
+  file:
+    path: "/var/spool/slurm/ctld/hash.{{ item }}"
+    state: directory
+    owner: slurm
+    group: slurm
+    mode: 0700
+  loop: "{{ range(0, 9+1)|list }}"
+
 - name: Copy service files to the machine.
   copy:
     src: "{{ item }}"
