@@ -117,6 +117,33 @@
    command: acl-import
    when: xdmod_version is version('8.0.0', operator='<=', strict=True)
 
+ - name: Drop and recreate databases
+   expect:
+     echo: yes
+     command: xdmod-setup
+     responses:
+       (.*)Do you want to continue(.*): "yes"
+       (.*)Select an option(.*):
+         - "2"
+         - "q"
+       (.*)DB Hostname or IP(.*): "localhost"
+       (.*)DB Port(.*): "3306"
+       (.*)DB Username(.*): "xdmod"
+       (.*)DB Password(.*): "{{ xdmod_db_pass }}"
+       (.*)(confirm) DB Password(.*): "{{ xdmod_db_pass }}"
+       (.*)DB Admin Username(.*): "root"
+       (.*)DB Admin Password(.*): ""
+       (.*)(confirm) DB Admin Password(.*): ""
+       (.*)Drop and recreate database(.*): "yes"
+       (.*)Overwrite config file(.*): "yes"
+       (.*)Press ENTER to continue(.*): ""
+       (.*)Do you want to see the output(.*): "no"
+       (.*)Press Any Key To Continue(.*): ""
+   register: result
+   failed_when: "'The script executed without error.' not in result.stdout"
+
+   #- debug:
+   #  var: result
 
  - name: shred slurm records
    command: xdmod-slurm-helper -r {{ slurm_cluster_name }}
