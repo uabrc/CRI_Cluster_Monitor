@@ -60,7 +60,7 @@
 
   job_script_dir: "/home/centos/supremm/jobs_dir/*"
 
-  "archive_out_dir": "/home/centos/supremm_test"
+  archive_out_dir: "/home/centos/supremm_test"
 
 # job_archiver related
 
