@@ -26,6 +26,11 @@
      - "php-pear-MDB2-Driver-mysql"
      - "php-xml"
      - "bzip2"
+     - "python-pip"
+
+ - name: install pexpect
+   command: pip install -U pip
+   command: pip install pexpect
 
  - name: get phantomJS
    unarchive: src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2" dest="/tmp/" remote_src=yes
