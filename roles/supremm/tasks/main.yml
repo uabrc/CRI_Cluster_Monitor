@@ -83,6 +83,9 @@
     - /usr/lib64/python2.7/site-packages/supremm/assets/modw_supremm.sql
     - /usr/share/xdmod/db/schema/modw_etl.sql
 
+- name: populate supremm databases with tables
+  command: /usr/share/xdmod/tools/etl/etl_overseer.php -p supremm.bootstrap
+
 - name: Configure acls
   command: acl-config
 
