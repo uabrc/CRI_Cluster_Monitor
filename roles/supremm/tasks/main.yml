@@ -96,5 +96,5 @@
   cron:
     minute: "*/{{ xdmod_cron_freq }}"
     state: present
-    job: "xdmod-slurm-helper --debug -r ohpc --start-time `{{ xdmod_shredder_start_time }}` --end-time `{{ xdmod_shredder_end_time }}` && xdmod-ingestor --debug --start-date `{{ xdmod_ingestor_start_date }}` --end-date `{{ xdmod_ingestor_end_date }}` && supremm_update && aggregate_supremm.sh -d"
+    job: "xdmod-slurm-helper --debug -r ohpc --start-time `{{ xdmod_shredder_start_time }}` --end-time `{{ xdmod_shredder_end_time }}` && xdmod-ingestor --debug --start-date `{{ xdmod_ingestor_start_date }}` --end-date `{{ xdmod_ingestor_end_date }}` && supremm_update && ingest_jobscripts.py -a -d && aggregate_supremm.sh -d"
 
