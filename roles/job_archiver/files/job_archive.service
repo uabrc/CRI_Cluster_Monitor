@@ -7,7 +7,6 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=5
-User=slurm
 ExecStart=/usr/local/bin/job_archive
 
 [Install]
