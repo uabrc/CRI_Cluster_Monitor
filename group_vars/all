@@ -32,6 +32,12 @@
 
   xdmod_db_pass: ""
 
+  xdmod_cron_freq: "5"
+  xdmod_shredder_start_time: "date +'\\%FT\\%T' -d '{{ xdmod_cron_freq }} minutes ago'"
+  xdmod_shredder_end_time: "date +'\\%FT\\%T'"
+  xdmod_ingestor_start_date: "date +'\\%F'"
+  xdmod_ingestor_end_date: "date -d 'next day' +'\\%F'"
+
 # SUPReMM
 
   enable_supremm: true
@@ -50,9 +56,13 @@
 
   xdmod_config_dir: "/etc/xdmod"
 
-  pcp_log_dir: ""
+  pcp_log_dir: "/home/pcp/supremm/pmlogger"
 
-  job_script_dir: " "
+  job_script_dir: "/home/centos/supremm/jobs_dir/*"
+
+  archive_out_dir: "/home/pcp/job_summary_staging"
+
+# job_archiver related
 
   "archive_out_dir": "/home/centos/supremm_test"
 
@@ -60,3 +70,5 @@
 
   hierarchy_file_path: "/home/centos/depttoschoolmapping.csv"
   group_to_hierarchy_file_path: "/home/centos/cheahausers.csv"
+  enable_job_archiver: true
+  

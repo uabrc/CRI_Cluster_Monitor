@@ -32,6 +32,16 @@
     - https://dl.bintray.com/pcp/el7/pcp-conf-3.12.2-1.x86_64.rpm
     - https://dl.bintray.com/pcp/el7/pcp-libs-3.12.2-1.x86_64.rpm
     - https://dl.bintray.com/pcp/el7/python-pcp-3.12.2-1.x86_64.rpm
+    - https://dl.bintray.com/pcp/el7/pcp-selinux-3.12.2-1.x86_64.rpm
+    - https://dl.bintray.com/pcp/el7/pcp-3.12.2-1.x86_64.rpm
+
+- name: Create home dir for pcp to store pcp log archives
+  file:
+    path: "/home/pcp/supremm/pmlogger"
+    state: directory
+    owner: pcp
+    group: pcp
+    mode: 0700
 
 - name: Install job summarization module
   yum:
@@ -70,6 +80,21 @@
     target: "{{ item }}"
   loop:
     - /usr/share/xdmod/db/schema/modw_supremm.sql
+    - /usr/lib64/python2.7/site-packages/supremm/assets/modw_supremm.sql
+    - /usr/share/xdmod/db/schema/modw_etl.sql
+
+- name: populate supremm databases with tables
+  command: /usr/share/xdmod/tools/etl/etl_overseer.php -p supremm.bootstrap
+
+- name: Configure acls
+  command: acl-config
 
 - name: setup the mongodb
   command: mongo {{ mongodb_connection_uri }} /usr/lib64/python2.7/site-packages/supremm/assets/mongo_setup.js
+
+- name: create xdmod shred cron job
+  cron:
+    minute: "*/{{ xdmod_cron_freq }}"
+    state: present
+    job: "xdmod-slurm-helper --debug -r ohpc --start-time `{{ xdmod_shredder_start_time }}` --end-time `{{ xdmod_shredder_end_time }}` && xdmod-ingestor --debug --start-date `{{ xdmod_ingestor_start_date }}` --end-date `{{ xdmod_ingestor_end_date }}` && supremm_update && ingest_jobscripts.py -a -d && aggregate_supremm.sh -d"
+

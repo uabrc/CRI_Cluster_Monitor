@@ -1,0 +1,14 @@
+[Unit]
+Description=Service to archive slurm job scripts.
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/local/bin/job_archive
+
+[Install]
+WantedBy=multi-user.target 
+

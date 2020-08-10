@@ -1,0 +1,40 @@
+- name: Remove existing job archiver app install
+  file:
+    path: /usr/local/jobarchive
+    state: absent
+
+- git:
+    repo: https://github.com/eesaanatluri/job_archive.git
+    dest: /opt/job_archive
+    clone: yes
+    version: feat-uabrc-local-changes
+
+- name: Build job_archiver binary
+  command: g++ /opt/job_archive/job_archive.cpp -o /usr/local/bin/job_archive -std=c++0x -lpthread
+
+- name: Create a directory to store the job scripts
+  file:
+    path: "{{ job_script_dir | regex_replace('[*]$', '') }}"
+    state: directory
+
+- name: Create dirs for slurm to store sbatch scripts
+  file:
+    path: "/var/spool/slurm/ctld/hash.{{ item }}"
+    state: directory
+    owner: slurm
+    group: slurm
+    mode: 0700
+  loop: "{{ range(0, 9+1)|list }}"
+
+- name: Copy service files to the machine.
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+  with_items:
+    - job_archive.service
+
+- name: Start job_archive.service
+  service:
+    name: job_archive.service
+    state: started
+    enabled: yes
