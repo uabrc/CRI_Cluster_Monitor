@@ -147,9 +147,11 @@
 
  - name: Import hierarchy CSV into XDMOD
    command: xdmod-import-csv -t hierarchy -i {{ hierarchy_file_path }}
+   when: hierarchy_file_path is defined
 
  - name: Provide a mapping from your user groups to the hierarchy items
    command: xdmod-import-csv -t group-to-hierarchy -i {{ group_to_hierarchy_file_path }}
+   when: group_to_hierarchy_file_path is defined
 
  - name: Run ingestor to ingest hierarchies into the tables
    command: xdmod-ingestor --last-modified-start-date 2015-09-01
