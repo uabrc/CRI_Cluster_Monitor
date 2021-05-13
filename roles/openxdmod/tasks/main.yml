@@ -79,6 +79,12 @@
  - name: xdmod auto update template
    template: src=update_check.json.j2 dest=/etc/xdmod/update_check.json
 
+ - name: copy script that extracts the individual chart configurations which can be added to roles.json for modifying the default charts in the dashboard
+   copy:
+     src: extract_chart_configs.php
+     dest: /usr/share/xdmod/tools/dev/extract_chart_configs.php
+     mode: '0744'
+
 #Need to initialize databases still
  - name: initialize xdmod databases
    mysql_db:
