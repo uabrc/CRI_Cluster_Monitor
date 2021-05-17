@@ -35,14 +35,25 @@ else {
   $user = $options["u"];
 }
 
+# User defined vars
+$servername = "localhost";
+$username = "root";
+$password = "";
+
 # Turn on mysqli error reporting for queries, mysqli fails silently by default.
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 # Mysql DB connection object
-$mysqli = new mysqli("localhost", "root", "", "");
+$mysqli = new mysqli($servername, $username, $password);
+
+# Check connection
+if ($mysqli->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 # Execute the query and generate the result set object
-$result = $mysqli->query("SELECT serialized_profile_data FROM moddb.UserProfiles INNER JOIN moddb.Users ON moddb.UserProfiles.user_id=moddb.Users.id AND moddb.Users.username='$user';");
+$query = "SELECT serialized_profile_data FROM moddb.UserProfiles INNER JOIN moddb.Users ON moddb.UserProfiles.user_id=moddb.Users.id AND moddb.Users.username='$user';";
+$result = $mysqli->query($query);
 
 # Convert the result set object into an associative array to access its values
 $data = $result->fetch_assoc();
