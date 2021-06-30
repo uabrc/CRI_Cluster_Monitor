@@ -1,13 +1,15 @@
 [Unit]
 Description=Service to archive slurm job scripts.
 After=network.target
+After=slurmctld.service
 StartLimitIntervalSec=0
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/usr/local/bin/job_archive
+ExecStart={{ job_archiver_bin }} -s {{ slurm_state_save_loc }} -t {{ job_archiver_dest }}
+User={{ job_archiver_user }}
 
 [Install]
 WantedBy=multi-user.target 
