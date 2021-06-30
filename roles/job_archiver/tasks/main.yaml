@@ -1,40 +1,47 @@
-- name: Remove existing job archiver app install
-  file:
-    path: /usr/local/jobarchive
-    state: absent
-
-- git:
-    repo: https://github.com/eesaanatluri/job_archive.git
-    dest: /opt/job_archive
+- name: Clone the slurm job archiver repo
+  git:
+    repo: "{{ job_archiver_url }}"
+    dest: "{{ job_archiver_path }}"
     clone: yes
-    version: feat-uabrc-local-changes
+    version: "{{ job_archiver_tag }}"
 
 - name: Build job_archiver binary
-  command: g++ /opt/job_archive/job_archive.cpp -o /usr/local/bin/job_archive -std=c++0x -lpthread
+  command: g++ "{{ job_archiver_path }}"/job_archive.cpp -o "{{ job_archiver_bin }}" -std=c++0x -lpthread
 
 - name: Create a directory to store the job scripts
   file:
-    path: "{{ job_script_dir | regex_replace('[*]$', '') }}"
+    path: "{{ job_archiver_dest }}"
     state: directory
+    owner: slurm
+    group: slurm
+    mode: 0700
+
+- name: Grab the state save location path in slurm.conf
+  shell: grep "StateSaveLocation" /etc/slurm/slurm.conf | awk -F '=' '{print $2}'
+  register: result
+
+- set_fact:
+    slurm_state_save_loc: "{{ result.stdout }}"
+
+#- debug:
+#    var: slurm_state_save_loc
 
 - name: Create dirs for slurm to store sbatch scripts
   file:
-    path: "/var/spool/slurm/ctld/hash.{{ item }}"
+    path: "{{ slurm_state_save_loc }}/hash.{{ item }}"
     state: directory
     owner: slurm
     group: slurm
     mode: 0700
   loop: "{{ range(0, 9+1)|list }}"
 
-- name: Copy service files to the machine.
-  copy:
-    src: "{{ item }}"
-    dest: "/etc/systemd/system/{{ item }}"
-  with_items:
-    - job_archive.service
+- name: Template service files to the machine.
+  template:
+    src: "job_archiver.service.j2"
+    dest: "/etc/systemd/system/job_archiver.service"
 
-- name: Start job_archive.service
+- name: Start job_archiver.service
   service:
-    name: job_archive.service
+    name: job_archiver.service
     state: started
     enabled: yes
