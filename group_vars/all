@@ -7,7 +7,7 @@
   ganglia_grid_name: "ExampleSite"
   ganglia_public_name: "ganglia.localdomain"
 
-  enable_openxdmod: true
+  enable_openxdmod: false
 
   xdmod_public_name: "ohpc.novalocal"
 
@@ -40,7 +40,7 @@
 
 # SUPReMM
 
-  enable_supremm: true
+  enable_supremm: false
 
   supremm_url: https://github.com/ubccr/xdmod-supremm/releases/download/v8.1.0/xdmod-supremm-8.1.0-1.0.el7.noarch.rpm
 
