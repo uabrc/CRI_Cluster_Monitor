@@ -64,7 +64,7 @@
 
 # Job_archiver related
 
-  enable_job_archiver: true
+  enable_job_archiver: false
   job_archiver_url: https://github.com/eesaanatluri/job_archive.git
   job_archiver_tag: "feat-uabrc-local-changes"
   job_archiver_path: "/opt/job_archive"             #Path to job_archive repo
