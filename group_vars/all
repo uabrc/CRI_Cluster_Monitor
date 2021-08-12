@@ -67,10 +67,10 @@
   enable_job_archiver: true
   job_archiver_url: https://github.com/eesaanatluri/job_archive.git
   job_archiver_tag: "feat-uabrc-local-changes"
-  job_archiver_path: "/opt/job_archive"
-  job_archiver_bin: "/usr/local/bin/job_archive"
+  job_archiver_path: "/opt/job_archive"             #Path to job_archive repo
+  job_archiver_bin: "/usr/local/bin/job_archive"    #Path to compiled job_archive binary
   job_archiver_user: "slurm"
-  job_archiver_dest: "/var/slurm/jobscript_archive"
+  job_archiver_dest: "/var/slurm/jobscript_archive" #Path to where jobscripts will be archived
 
 # Hierarchy related
 
