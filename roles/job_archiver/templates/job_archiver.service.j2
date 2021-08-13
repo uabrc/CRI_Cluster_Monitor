@@ -8,7 +8,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart={{ job_archiver_bin }} -s {{ slurm_state_save_loc }} -t {{ job_archiver_dest }}
+ExecStart={{ job_archiver_bin }} -s {{ slurm_state_save_loc }}/hash. -t {{ job_archiver_dest }}
 User={{ job_archiver_user }}
 
 [Install]

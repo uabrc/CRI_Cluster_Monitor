@@ -7,7 +7,7 @@
   ganglia_grid_name: "ExampleSite"
   ganglia_public_name: "ganglia.localdomain"
 
-  enable_openxdmod: true
+  enable_openxdmod: false
 
   xdmod_public_name: "ohpc.novalocal"
 
@@ -40,7 +40,7 @@
 
 # SUPReMM
 
-  enable_supremm: true
+  enable_supremm: false
 
   supremm_url: https://github.com/ubccr/xdmod-supremm/releases/download/v8.1.0/xdmod-supremm-8.1.0-1.0.el7.noarch.rpm
 
@@ -64,13 +64,13 @@
 
 # Job_archiver related
 
-  enable_job_archiver: true
+  enable_job_archiver: false
   job_archiver_url: https://github.com/eesaanatluri/job_archive.git
   job_archiver_tag: "feat-uabrc-local-changes"
-  job_archiver_path: "/opt/job_archive"
-  job_archiver_bin: "/usr/local/bin/job_archive"
+  job_archiver_path: "/opt/job_archive"             #Path to job_archive repo
+  job_archiver_bin: "/usr/local/bin/job_archive"    #Path to compiled job_archive binary
   job_archiver_user: "slurm"
-  job_archiver_dest: "/var/slurm/jobscript_archive"
+  job_archiver_dest: "/var/slurm/jobscript_archive" #Path to where jobscripts will be archived
 
 # Hierarchy related
 
